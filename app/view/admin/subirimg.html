@@ -1,0 +1,54 @@
+<md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding>
+    <div layout-padding flex="20">
+        <h2 class="md-title">Logotipo</h2>
+        <form name="myForm">
+            <div layout-gt-sm="column">
+                <label>Descripción</label>
+                <md-input-container class="md-block" flex-gt-sm>
+                    <input type="text" name="userName" ng-model="username" size="31" required>
+                    <div ng-messages="formimg.userName.$error">
+                        <div ng-message="required">Campo Requerido.</div>
+                    </div>
+                </md-input-container>
+                <md-input-container>
+                    <input type="file" ngf-select ng-model="picFile" name="file" accept="image/*" ngf-max-size="2MB" required ngf-model-invalid="errorFile">
+                    <i ng-show="myForm.file.$error.required">*required</i>
+                    <br>
+                    <i ng-show="myForm.file.$error.maxSize">File too large 
+                          {{errorFile.size / 1000000|number:1}}MB: max 2M</i>
+                    <img ng-show="myForm.file.$valid" ngf-thumbnail="picFile" class="thumb">
+                    <md-button class="md-primary" ng-click="picFile = null" ng-show="picFile">Remover</md-button>
+                </md-input-container>
+                <md-button class="md-raised md-primary" ng-click="uploadPic(picFile)" ng-disabled="!myForm.$valid">
+                    Guardar
+                </md-button>
+            </div>
+        </form>
+    </div>
+    <div layout-padding flex="20">
+        <h2 class="md-title">Galería</h2>
+        <form name="galeria">
+            <div layout-gt-sm="column">
+                <label>Descripción</label>
+                <md-input-container class="md-block" flex-gt-sm>
+                    <input type="text" name="description" ng-model="description" size="31" required>
+                    <div ng-messages="formimg.description.$error">
+                        <div ng-message="required">Campo Requerido.</div>
+                    </div>
+                </md-input-container>
+                <md-input-container>
+                    <input type="file" ngf-select ng-model="picFile2" name="file2" accept="image/*" ngf-max-size="2MB" required ngf-model-invalid="errorFile">
+                    <i ng-show="galeria.file.$error.required">*required</i>
+                    <br>
+                    <i ng-show="galeria.file.$error.maxSize">File too large 
+                          {{errorFile.size / 1000000|number:1}}MB: max 2M</i>
+                    <img ng-show="galeria.file.$valid" ngf-thumbnail="picFile2" class="thumb">
+                    <md-button class="md-primary" ng-click="picFile2 = null" ng-show="picFile2">Remover</md-button>
+                </md-input-container>
+                <md-button class="md-raised md-primary" ng-click="uploadgalleri(picFile2)" ng-disabled="!galeria.$valid">
+                    Guardar
+                </md-button>
+            </div>
+        </form>
+    </div>
+</md-content>

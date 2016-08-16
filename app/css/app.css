@@ -1,0 +1,63 @@
+/*html body{
+  background: #EEEEEE;
+  color: #878787;
+  line-height: 24px;
+}
+
+
+.md-title{
+	color: #878787!important;
+}
+.md-body-2 {
+    font-size: 17px;
+    font-weight: 500;
+    letter-spacing: 0.010em;
+    line-height: 24px;
+    position: relative;
+    top: 4px;
+}*/
+.pointer{
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.nav-active{
+  background: red;
+  
+}
+$gray: #eee;
+
+md-content.md-default-theme {
+  /*background-color: $gray;*/
+}
+md-card {
+  /*background-color: #fff;*/
+  h2:first-of-type {
+    margin-top: 0;
+  }
+}
+md-toolbar {
+  .md-button.md-default-theme {
+    border-radius: 99%; // round toolbar buttons
+  }
+}
+h2 {
+  font-weight: 400;
+}
+.md-toolbar-tools-bottom {
+  font-size: small;
+  & :last-child {
+    opacity: 0.8;
+  }
+}
+md-toolbar:not(.md-hue-1),
+.md-fab {
+  fill: #fff;
+}
+md-sidenav a {
+  fill: #737373;
+  ng-md-icon {
+    position: relative;
+    top: 5px; // adjust for svg viewbox
+  }
+}

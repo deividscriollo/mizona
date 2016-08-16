@@ -1,0 +1,45 @@
+/* Empty. Add your own CSS if you like */
+/*content map*/
+.leaflet-top {
+    top: 0;
+    width: 269px;
+}
+
+
+
+.bar.bar-stable {
+    border-color: #b2b2b2;
+    background-color: #0090E9;
+    background-image: linear-gradient(0deg, #b2b2b2, #b2b2b2 50%, transparent 50%);
+    color: #ffffff!important;
+    height: 60px;
+}
+
+.menu .bar-header {
+    z-index: 11;
+    height: 130px!important;
+    background: red!important;
+    background-image: url(../img/bg.jpg)!important;
+    background-size: 280px 130px!important;
+}
+
+.nav-dc{
+	top: 130px!important;
+}
+
+.bar.bar-stable .title {
+    color: #ffffff!important;
+    top: 6px;
+}
+
+.has-header {
+    top: 60px;
+}
+
+.bar-stable .button.button-clear {
+    border-color: transparent;
+    background: none;
+    box-shadow: none;
+    color: #ffffff;
+    font-size: 17px;    
+}

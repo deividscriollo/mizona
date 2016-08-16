@@ -1,0 +1,25 @@
+<md-dialog>
+  <form name="formpass" ng-submit="passupdate()"">
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Generando nueva contraseña</h2>
+      </div>
+    </md-toolbar>
+    <md-dialog-content>
+      <div layout-gt-sm="row">
+        <md-input-container class="md-block" flex-gt-sm>
+            <label>Ingrese Nuevo Password</label>
+            <input autocomplete="off" type="password" name="password"  ng-model="newpass.password" required>
+            <div ng-messages="formpass.password.$error" ng-show="formpass.password.$dirty">
+              <div ng-message="required">Campo Requerido</div>
+            </div>
+        </md-input-container>
+      </div>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+      <md-button  type="submit" class="md-raised md-primary" ng-disabled="formpass.$invalid">
+        Actualizar
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

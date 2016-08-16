@@ -1,0 +1,48 @@
+<md-dialog aria-label="Mango (Fruit)" ng-controller="DialogController">
+  <!-- <form> -->
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Nueva Categoria</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content style="max-width:800px;max-height:810px; ">
+    	<md-content layout-padding>
+    	    <form name="fm">
+		        <md-input-container class="md-block">
+		            <label>Categoria</label>
+		            <input autocomplete="off" type="text" name="cat"  ng-model="cat" required>
+		            <div ng-messages="fm.cat.$error" ng-show="fm.cat.$dirty">
+		              <div ng-message="required">Campo Requerido</div>
+		            </div>
+		        </md-input-container>
+
+		        <md-input-container class="md-block">
+		            <label> Descripcion</label>
+		            <input autocomplete="off" type="text" name="descripcion"  ng-model="descripcion" required>
+		            <div ng-messages="fm.descripcion.$error" ng-show="fm.descripcion.$dirty">
+		              <div ng-message="required">Campo Requerido</div>
+		            </div>
+		        </md-input-container>
+		        <md-input-container class="md-block">
+		            <md-button class="md-raised md-primary" ng-click="registrar()" ng-disabled="fm.$invalid" >	Enviar
+		            </md-button>
+		        </md-input-container>
+		    </form> 
+    	</md-content>
+      
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+      
+      <span flex></span>
+      
+      <md-button ng-click="cancel()" style="margin-right:20px;" >
+        Cancelar
+      </md-button>
+    </md-dialog-actions>
+  <!-- </form> -->
+</md-dialog>
+

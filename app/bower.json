@@ -1,0 +1,36 @@
+{
+  "name": "app",
+  "description": "app tesis por david criollo",
+  "main": "index.html",
+  "authors": [
+    "deividscriollo@gmail.com",
+    "david esteban criollo tabango"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.1.0",
+    "angular": "angularjs#^1.5.8",
+    "angular-material": "^1.0.9",
+    "angular-route-segment": "^1.5.1",
+    "angular-route": "^1.5.8",
+    "angular-material-icons": "^0.7.1",
+    "material-design-icons": "^2.2.3",
+    "datatables.net": "^1.10.12",
+    "angular-resource": "^1.5.8",
+    "ngstorage": "^0.3.10",
+    "jquery-validation": "^1.15.1",
+    "angular-leaflet-directive": "^0.10.0",
+    "leaflet": "^0.7.7",
+    "angular-block-ui": "^0.2.2",
+    "ng-file-upload": "^12.0.4"
+  }
+}
