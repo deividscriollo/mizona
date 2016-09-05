@@ -1,6 +1,6 @@
 var app = angular.module('dcapp');
 
-var server = 'http://localhost/server/data/';
+var server = 'http://localhost/mizona/server/data/';
 app.service('imagenes', function($localStorage, $http, Upload) {
     this.update = function(postData) {
         // limpiar registros

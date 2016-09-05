@@ -1,21 +1,23 @@
 var app = angular.module('dcapp');
 
-app.controller('LoginCtrl', function($scope, $mdDialog, empresa, session, blockUI, $location) {
-    // cod    
+app.controller('LogingeneralCtrl', function($scope, $mdDialog, empresa, session, blockUI, $location) {
     $scope.menu = [ 
-                    { title: 'Inicio', icon: 'home', link: '#/Administrador'},
-                    { link : '', title: 'Perfil', icon: 'perm_contact_calendar', link: '#/Administrador/Perfil'},
-                    { title: 'Perfil Imagenes', icon: 'aspect_ratio', link: '#/Administrador/Subir_Imagenes'},
-                    { title: 'Publicacion Imagenes', icon: 'wallpaper', link: '#/Administrador/Subir_Imagenes'},
-                    { title: 'Mapa', icon: 'place', link: '#/Administrador/Mapa-VistaPrevia'}
+                    { title: 'Iniciar Session', icon: 'home', link: '#/Login/Acceso'},
+                    { title: 'Registrarme', icon: 'perm_contact_calendar', link: '#/Login/Registro'},
+                    { title: 'Recuperas password', icon: 'aspect_ratio', link: '#/Login/Recuperar'}
                   ];
+});
 
+
+
+app.controller('logeoCtrl', function($scope, $mdDialog, empresa, session, blockUI, $location) {
+    // cod    
     $scope.inisession = function() {
         var dataform = $scope.ini;
         session.iniciar(dataform).then(function(data) {
             // console.log(data); //event res
             if (data.result) {
-                $location.path('/Admin');
+                $location.path('/Administrador');
                 console.log('test');
             } else {
                 $mdDialog.show(
@@ -30,6 +32,11 @@ app.controller('LoginCtrl', function($scope, $mdDialog, empresa, session, blockU
             }
         });
     }
+    
+});
+
+app.controller('registrarCtrl', function($scope, $mdDialog, empresa, session, blockUI, $location) {
+    console.log('test');
     $scope.registrar = function() {
         var dataform = $scope.dreg;
         empresa.nuevo(dataform).then(function(data) {
@@ -43,7 +50,9 @@ app.controller('LoginCtrl', function($scope, $mdDialog, empresa, session, blockU
                     .textContent('Revise su correo para activar su cuenta')
                     .ariaLabel('Alert Dialog Demo')
                     .ok('Entendido')
-                );
+                ).finally(function() {
+                    $location.path('/Login/Acceso');
+                });
             } else {
                 $mdDialog.show(
                     $mdDialog.alert()
@@ -59,14 +68,38 @@ app.controller('LoginCtrl', function($scope, $mdDialog, empresa, session, blockU
             $scope.newreg.$setPristine();
         });
     }
-
+});
+app.controller('recuperarCtrl', function($scope, $mdDialog, empresa, session, blockUI, $location) {
     $scope.recuperarpass = function(){
-    	var dataform = $scope.drecuperarpass;
-    	empresa.recuperarpass(dataform).then(function(data) {
-    		console.log(data);
-    	});
-    	$scope.drecuperarpass = {}
-    	$scope.formrecu.$setPristine();
+     var dataform = $scope.drecuperarpass;
+     empresa.recuperarpass(dataform).then(function(data) {
+         // console.log(data);
+        if (data.result) {
+            $mdDialog.show(
+                $mdDialog.alert()
+                .parent(angular.element(document.querySelector('#popupContainer')))
+                .clickOutsideToClose(true)
+                .title('Buen Trabajo')
+                .textContent('Revise su correo para generar su nueva contraseña')
+                .ariaLabel('Alert Dialog Demo')
+                .ok('Entendido')
+            ).finally(function() {
+                $location.path('/Login/Acceso');
+            });
+        } else {
+            $mdDialog.show(
+                $mdDialog.alert()
+                .parent(angular.element(document.querySelector('#popupContainer')))
+                .clickOutsideToClose(true)
+                .title('Lo sentimos')
+                .textContent('Intente mas Tarde :(')
+                .ariaLabel('Alert Dialog Demo')
+                .ok('Entendido')
+            );
+        }
+     });
+     $scope.drecuperarpass = {}
+     $scope.formrecu.$setPristine();
     }
 });
 
@@ -82,7 +115,7 @@ app.controller('Active-count-Ctrl', function($mdDialog,  $routeSegment, $locatio
                 .ariaLabel('Alert Dialog Demo')
                 .ok('Iniciar Sesion')
             ).finally(function() {
-	          $location.path('/Login')
+	          $location.path('/Login/Acceso');
 	        });
             
         } else {
@@ -95,7 +128,7 @@ app.controller('Active-count-Ctrl', function($mdDialog,  $routeSegment, $locatio
                 .ariaLabel('Alert Dialog Demo')
                 .ok('Entendido')
             ).finally(function() {
-	          $location.path('/Login')
+	          $location.path('/Login/Acceso')
 	        });
         }
 	});
@@ -129,7 +162,7 @@ app.controller('update-pass-Ctrl', function($scope, $mdDialog,  $routeSegment, $
 	                .ok('Iniciar Sesion')
 	            ).finally(function() {
 		          $mdDialog.hide();
-		          $location.path('/Login')
+		          $location.path('/Login/Acceso')
 		        });
 	        } else {
 	            $mdDialog.show(
@@ -142,7 +175,7 @@ app.controller('update-pass-Ctrl', function($scope, $mdDialog,  $routeSegment, $
 	                .ok('Entendido')
 	            ).finally(function() {
 	            	$mdDialog.hide();
-		          	$location.path('/Login')
+		          	$location.path('/Login/Acceso')
 		        });
 	        }
     	});

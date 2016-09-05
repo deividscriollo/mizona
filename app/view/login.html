@@ -1,6 +1,12 @@
 <style type="text/css">
-    .bg{
+    body{
         background: url('images/wallpaper.png');
+    }
+    a:link{   
+         text-decoration:none;   
+        }  
+    body{
+      color:#757575;
     }
 </style>
 <div>
@@ -10,9 +16,9 @@
         <md-toolbar class="md-tall md-hue-2">
             <span flex></span>
             <div layout="column" class="md-toolbar-tools-bottom inset">
-                <img src="images/Wall1.png" class="avatar" width="100%">             
-                <div>{{local.nombre_comercial}}</div>
-                <div>email@domainname.com</div>
+                <img src="images/favicon.png" class="avatar" width="40px">             
+                <div>Indentificación</div>
+                <div>usuario password :) </div>
             </div>
         </md-toolbar>
         <md-list>
@@ -53,136 +59,11 @@
                     <ng-md-icon icon="menu"></ng-md-icon>
                 </md-button>
                 <h3>Inicio </h3>
-                <span flex></span>
-                <md-button class="md-icon-button launch" ng-click="showListBottomSheet($event)">
-                     <ng-md-icon icon="more_vert"></ng-md-icon>
-                </md-button>
             </div>
         </md-toolbar>
-        <md-content flex md-scroll-y class="bg">
-            <div layout-align="center start" layout="row">
-              <md-content  flex="60">
-                <md-tabs md-dynamic-height md-border-bottom>
-                  <md-tab label="Iniciar Sesion">
-                    <md-content layout-padding  >
-                      <div layout-align="center start" layout="row">
-                        <form name="forminit" flex="40" ng-submit="inisession()">
-                          <md-input-container class="md-block" flex-gt-sm>
-                              <label>Email</label>
-                              <input required type="email" name="correo" ng-model="ini.correo"
-                                      ng-pattern="/^.+@.+\..+$/" />
-                              <div ng-messages="forminit.correo.$error" ng-show="forminit.correo.$dirty">
-                                <div ng-message="required">Campo Requerido.</div>
-                                <div ng-message="pattern">Correo invalido</div>
-                              </div>
-                            </md-input-container>
-                            <md-input-container class="md-block" flex-gt-sm>
-                                <label>Password</label>
-                                <input autocomplete="off" type="password" name="password"  ng-model="ini.password" required>
-                                <div ng-messages="forminit.password.$error" ng-show="forminit.password.$dirty">
-                                  <div ng-message="required">Campo Requerido</div>
-                                </div>
-                            </md-input-container>
-                          <md-input-container class="md-block">
-                              <md-button  type="submit" class="md-raised md-primary" ng-disabled="forminit.$invalid">
-                                Entrar
-                              </md-button>
-                          </md-input-container>
-                        </form> 
-                      </div>
-                    </md-content>
-                  </md-tab>
-                  <md-tab label="registro" md-selected="1" >
-                    <md-content layout-padding  >
-                      <div layout-align="center start" layout="row">
-                        <form name="newreg" flex="80" ng-submit="registrar()">
-                          <div layout-gt-sm="row">
-                            <md-input-container class="md-block" flex-gt-sm>
-                            <label>Nombre Comercial</label>
-                              <input required name="nombre_comercial" ng-model="dreg.nombre_comercial">
-                              <div ng-messages="newreg.nombre_comercial.$error">
-                                <div ng-message="required">Campo Requerido.</div>
-                              </div>
-                            </md-input-container>
-                            <md-input-container class="md-block" flex-gt-sm>
-                            <label>Propietario</label>
-                              <input required name="propietario" ng-model="dreg.propietario">
-                              <div ng-messages="newreg.propietario.$error">
-                                <div ng-message="required">Campo Requerido.</div>
-                              </div>
-                            </md-input-container>
-                          </div>
-                          <div layout-gt-sm="row">
-                            <md-input-container class="md-block" flex-gt-sm>
-                              <label>Teléfono</label>
-                              <input required name="telefono" ng-pattern="/[0-9]/" ng-model="dreg.telefono">
-                              <div ng-messages="newreg.telefono.$error" ng-show="newreg.telefono.$dirty">
-                                <div ng-message="required">Campo Requerido.</div>
-                                <div ng-message="pattern">Solo números</div>
-                              </div>
-                            </md-input-container>
-                            <md-input-container class="md-block" flex-gt-sm>
-                              <label>Codigo Asociación</label>
-                              <input required name="cod_aso" ng-model="dreg.cod_aso">
-                              <div ng-messages="newreg.cod_aso.$error">
-                                <div ng-message="required">Campo Requerido.</div>
-                              </div>
-                            </md-input-container>
-                          </div>
-                          <div layout-gt-sm="row">
-                            <md-input-container class="md-block" flex-gt-sm>
-                              <label>Email</label>
-                              <input required type="email" name="correo" ng-model="dreg.correo"
-                                      ng-pattern="/^.+@.+\..+$/" />
-                              <div ng-messages="newreg.correo.$error" ng-show="newreg.correo.$dirty">
-                                <div ng-message="required">Campo Requerido.</div>
-                                <div ng-message="pattern">Correo invalido</div>
-                              </div>
-                            </md-input-container>
-                            <md-input-container class="md-block" flex-gt-sm>
-                                <label>Password</label>
-                                <input autocomplete="off" type="password" name="password"  ng-model="dreg.password" required>
-                                <div ng-messages="newreg.password.$error" ng-show="newreg.password.$dirty">
-                                  <div ng-message="required">Campo Requerido</div>
-                                </div>
-                            </md-input-container>
-                          </div>
-                          <div layout-align="center start" layout="row">
-                            <md-input-container>
-                                <md-button  type="submit" class="md-raised md-primary" ng-disabled="newreg.$invalid">
-                                  Guardar
-                                </md-button>
-                            </md-input-container>
-                          </div>
-                        </form> 
-                      </div>
-                    </md-content>
-                  </md-tab>
-                  <md-tab label="Recuperar Conraseña">
-                    <md-content layout-padding  >
-                      <div layout-align="center start" layout="row">
-                        <form name="formrecu" ng-submit="recuperarpass()" flex="40">
-                          <md-input-container class="md-block" flex-gt-sm>
-                              <label>Email</label>
-                              <input required type="email" name="correo" ng-model="drecuperarpass.correo"
-                                      ng-pattern="/^.+@.+\..+$/" />
-                              <div ng-messages="formrecu.correo.$error" ng-show="formrecu.correo.$dirty">
-                                <div ng-message="required">Campo Requerido.</div>
-                                <div ng-message="pattern">Correo invalido</div>
-                              </div>
-                            </md-input-container>
-                          <md-input-container class="md-block">
-                              <md-button  type="submit" class="md-raised md-primary" ng-disabled="formrecu.$invalid">
-                                Enviar al correo
-                              </md-button>
-                          </md-input-container>
-                      </form> 
-                    </div>
-                  </md-content>
-                  </md-tab>
-                </md-tabs>  
-              </md-content>
-            </div>
-        </md-content>
+        <div flex md-scroll-x class="bg">
+          <div layout-align="center start" layout="row" app-view-segment="1">
+          </div>
+        </div>
     </div>
 </div>

@@ -6,7 +6,10 @@ $routeSegmentProvider.
     when('/Administrador',          's1').
     when('/Administrador/Perfil',          's1.perfil').
     when('/--',          's1').
-    when('/Login',    's2').
+    when('/Login',    's4').
+    when('/Login/Acceso',    's4.acceso').
+    when('/Login/Registro',    's4.registro').
+    when('/Login/Recuperar',    's4.recuperar').
     when('/active_count/:id',    'active_count').
     when('/recuperarpass/:id',    'recuperarpass').
 
@@ -31,7 +34,7 @@ $routeSegmentProvider.
     within().
         segment('perfil', {
             templateUrl: 'view/admin/perfil.html',
-            // controller: 'AppCtrl'
+            controller: 'admin-perfil-Ctrl'
         }).
 
         segment('itemInfo', {
@@ -54,10 +57,25 @@ $routeSegmentProvider.
             templateUrl: 'templates/section1/prefs.html'}).
 
         up().
-    segment('s2', {
+    segment('s4', {
         templateUrl: 'view/login.html',
-        controller: 'LoginCtrl'
+        controller: 'LogingeneralCtrl'
     }).
+        within().
+            segment('acceso', {
+                templateUrl: 'view/logeogeneral/login.html',
+                default: true,
+                controller: 'logeoCtrl'
+            }).
+            segment('registro', {
+                templateUrl: 'view/logeogeneral/registro.html',
+                controller: 'registrarCtrl'
+            }).
+            segment('recuperar', {
+                templateUrl: 'view/logeogeneral/recuperar.html',
+                controller: 'recuperarCtrl'
+            }).
+            up().
     segment('s3', {
         templateUrl: 'view/admin.html',
         controller: 'admin-Ctrl'
@@ -82,10 +100,6 @@ $routeSegmentProvider.
             }).
             
             up().
-    segment('s4', {
-        templateUrl: 'view/admin.html',
-        // controller: 'LoginCtrl'
-    }).
     segment('active_count', {
         // templateUrl: 'view/admin.html',
         controller: 'Active-count-Ctrl',
@@ -97,7 +111,7 @@ $routeSegmentProvider.
         dependencies: ['id']
     })
 
-    $routeProvider.otherwise({redirectTo: '/'});
+    $routeProvider.otherwise({redirectTo: '/as'});
 
     
 });

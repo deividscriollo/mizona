@@ -38,7 +38,7 @@ class correo  extends PHPMailer{
        return $this->Send() ;
     }
     public function url_(){
-    return $_SERVER['SERVER_NAME'].'/app/#/';
+    return $_SERVER['SERVER_NAME'].'/mizona/app/#/';
   }
 }//--> fin clase
 ?>

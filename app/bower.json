@@ -31,6 +31,7 @@
     "angular-leaflet-directive": "^0.10.0",
     "leaflet": "^0.7.7",
     "angular-block-ui": "^0.2.2",
-    "ng-file-upload": "^12.0.4"
+    "ng-file-upload": "^12.0.4",
+    "material-design-lite": "^1.2.0"
   }
 }

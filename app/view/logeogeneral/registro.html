@@ -1,0 +1,108 @@
+<md-card flex="50">
+  <img src="images/registro.png" class="md-card-image" alt="Washed Out">
+  <md-card-title>
+    <md-card-title-text>
+      <span class="md-headline">Registrar</span>
+    </md-card-title-text>
+  </md-card-title>
+  <md-card-content>
+    <div layout-align="center start" layout="row">
+      <form name="newreg" flex="90" ng-submit="registrar()">
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+          <label>Nombre Comercial</label>
+            <input required name="nombre_comercial" ng-model="dreg.nombre_comercial">
+            <div ng-messages="newreg.nombre_comercial.$error">
+              <div ng-message="required">Campo Requerido.</div>
+            </div>
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm>
+          <label>Propietario</label>
+            <input required name="propietario" ng-model="dreg.propietario">
+            <div ng-messages="newreg.propietario.$error">
+              <div ng-message="required">Campo Requerido.</div>
+            </div>
+          </md-input-container>
+        </div>
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Teléfono</label>
+            <input required name="telefono" ng-pattern="/[0-9]/" ng-model="dreg.telefono">
+            <div ng-messages="newreg.telefono.$error" ng-show="newreg.telefono.$dirty">
+              <div ng-message="required">Campo Requerido.</div>
+              <div ng-message="pattern">Solo números</div>
+            </div>
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Codigo Asociación</label>
+            <input required name="cod_aso" ng-model="dreg.cod_aso">
+            <div ng-messages="newreg.cod_aso.$error">
+              <div ng-message="required">Campo Requerido.</div>
+            </div>
+          </md-input-container>
+        </div>
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Email</label>
+            <input required type="email" name="correo" ng-model="dreg.correo"
+                    ng-pattern="/^.+@.+\..+$/" />
+            <div ng-messages="newreg.correo.$error" ng-show="newreg.correo.$dirty">
+              <div ng-message="required">Campo Requerido.</div>
+              <div ng-message="pattern">Correo invalido</div>
+            </div>
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm>
+              <label>Password</label>
+              <input autocomplete="off" type="password" name="password"  ng-model="dreg.password" required>
+              <div ng-messages="newreg.password.$error" ng-show="newreg.password.$dirty">
+                <div ng-message="required">Campo Requerido</div>
+              </div>
+          </md-input-container>
+        </div>
+        <div layout-align="center start" layout="row">
+          <md-input-container>
+              <md-button  type="submit" class="md-raised md-primary" ng-disabled="newreg.$invalid">
+                Guardar
+              </md-button>
+          </md-input-container>
+        </div>
+      </form> 
+    </div>
+  </md-card-content>
+</md-card>
+<md-card flex="30">
+  <md-card-header>
+    <md-card-avatar>
+      <md-icon> business </md-icon>
+    </md-card-avatar>
+    <md-card-header-text>
+      <span class="md-title">{{dreg.nombre_comercial}}</span>
+      <span class="md-subhead">{{dreg.propietario}}</span>
+    </md-card-header-text>
+  </md-card-header>
+  <img src="images/card2.png" class="md-card-image" alt="Washed Out">
+  <md-card-content>
+
+    <!-- Contact Chip -->
+    <div  layout="row">
+    <span class="mdl-chip mdl-chip--contact" layout="row">
+        <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white">T</span>
+        <span class="mdl-chip__text">{{dreg.telefono}}</span>
+    </span>
+    </div>
+    <!-- Contact Chip -->
+    <div  layout="row">
+    <span class="mdl-chip mdl-chip--contact"  layout="row">
+        <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white">C</span>
+        <span class="mdl-chip__text">{{dreg.cod_aso}}</span>
+    </span>
+    </div>
+    <!-- Contact Chip -->
+    <div  layout="row">
+    <span class="mdl-chip mdl-chip--contact">
+        <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white">E</span>
+        <span class="mdl-chip__text">{{dreg.correo}}</span>
+    </span>
+    </div>
+  </md-card-content>
+</md-card>

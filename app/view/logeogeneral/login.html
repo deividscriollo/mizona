@@ -1,0 +1,35 @@
+<md-card flex="40">
+  <img src="images/login.png" class="md-card-image" alt="Washed Out">
+  <md-card-title>
+    <md-card-title-text>
+      <span class="md-headline">Iniciar Session</span>
+    </md-card-title-text>
+  </md-card-title>
+  <md-card-content>
+    <div layout-align="center start" layout="row">
+      <form name="forminit" flex="60" ng-submit="inisession()">
+          <md-input-container class="md-block" flex-gt-sm>
+              <label>Email</label>
+              <input required type="email" name="correo" ng-model="ini.correo"
+                      ng-pattern="/^.+@.+\..+$/" />
+              <div ng-messages="forminit.correo.$error" ng-show="forminit.correo.$dirty">
+                <div ng-message="required">Campo Requerido.</div>
+                <div ng-message="pattern">Correo invalido</div>
+              </div>
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-sm>
+                <label>Password</label>
+                <input autocomplete="off" type="password" name="password"  ng-model="ini.password" required>
+                <div ng-messages="forminit.password.$error" ng-show="forminit.password.$dirty">
+                  <div ng-message="required">Campo Requerido</div>
+                </div>
+            </md-input-container>
+          <md-input-container class="md-block">
+              <md-button  type="submit" class="md-raised md-primary" ng-disabled="forminit.$invalid">
+                Entrar
+              </md-button>
+          </md-input-container>
+      </form> 
+    </div>
+  </md-card-content>
+</md-card>
