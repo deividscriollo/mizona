@@ -33,6 +33,20 @@ app.service('imagenes', function($localStorage, $http, Upload) {
     
 });
 app.service('categoria', function($localStorage, $http) {
+	this.get = function() {
+        // limpiar registros
+        var url = server+'categoria/app.php';
+        var promise = 	$http({
+				                method: 'POST',
+								url: url,
+								data: {'success':'get'}
+				        }).then(function (response) {
+					        // The return value gets picked up by the then in the controller.
+					        return response.data;
+				        });
+        // Return the promise to the controller
+	    return promise;
+    };
     this.nuevo = function(postData) {
         // limpiar registros
         var url = server+'categoria/app.php';
@@ -40,6 +54,38 @@ app.service('categoria', function($localStorage, $http) {
 				                method: 'POST',
 								url: url,
 								data: {'save':'new', data:postData}
+				        }).then(function (response) {
+				        	// The then function here is an opportunity to modify the response
+					        // console.log(response);
+					        // The return value gets picked up by the then in the controller.
+					        return response.data;
+				        });
+        // Return the promise to the controller
+	    return promise;
+    };
+});
+app.service('empresa_categoria', function($localStorage, $http) {
+	this.get = function() {
+        // limpiar registros
+        var url = server+'empresa_categoria/app.php';
+        var promise = 	$http({
+				                method: 'POST',
+								url: url,
+								data: {'success':'get'}
+				        }).then(function (response) {
+					        // The return value gets picked up by the then in the controller.
+					        return response.data;
+				        });
+        // Return the promise to the controller
+	    return promise;
+    };
+    this.nuevo = function(postData) {
+        // limpiar registros
+        var url = server+'empresa_categoria/app.php';
+        var promise = 	$http({
+				                method: 'POST',
+								url: url,
+								data: {'success':'save', data:postData}
 				        }).then(function (response) {
 				        	// The then function here is an opportunity to modify the response
 					        // console.log(response);

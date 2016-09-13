@@ -1,0 +1,88 @@
+<md-content layout-gt-sm="row">
+    <div flex-xs flex-gt-xs="60" layout="column"> <!-- informacion general -->
+        <md-card>
+            <img ng-src="images/card2.png" class="md-card-image" alt="Washed Out">
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline">Información General</span>
+                </md-card-title-text>
+            </md-card-title>
+            <form name="formredes" ng-submit="registrredes()">
+                <md-card-content>
+                    <div layout-gt-sm="row">
+                        <md-input-container  class="md-icon-float md-block" flex-gt-sm>
+                            <label>FacebooK</label>
+                            <md-icon md-svg-src="img/icons/facebook.svg"></md-icon>
+                            <input required type="url" name="facebook" ng-model="redes.facebook">
+                            <div ng-messages="formredes.facebook.$error">
+                                <div ng-message="required">Campo Requerido.</div>
+                            </div>
+                        </md-input-container>
+                        <md-input-container  class="md-icon-float md-block" flex-gt-sm>
+                            <label>Twitter</label>
+                            <md-icon md-svg-src="img/icons/twitter.svg"></md-icon>
+                            <input type="url" name="twitter" ng-model="redes.twitter">
+                        </md-input-container>
+                        <md-input-container  class="md-icon-float md-block" flex-gt-sm>
+                            <label>Instagram</label>
+                            <md-icon md-svg-src="img/icons/ic_card_giftcard_24px.svg"></md-icon>
+                            <input type="url" name="instagram" ng-model="redes.instagram" />
+                        </md-input-container>
+                    </div>
+                </md-card-content>
+                <md-card-actions layout="row" layout-align="center center end">
+                    <md-button type="submit" class="md-raised md-primary" ng-disabled="formredes.$invalid">
+                        Actualizar
+                    </md-button>
+                </md-card-actions>
+            </form>
+        </md-card>
+    </div>
+    <div flex-xs flex-gt-xs="40" layout="column"> <!-- informacion seleccionar categorias pertenecientes -->
+        <md-card>
+            <md-card-header>
+                <md-card-avatar>
+                    <md-icon class="md-accent">business</md-icon>
+                </md-card-avatar>
+                <md-card-header-text>
+                    <span class="md-title">{{local.nombre_comercial}}</span>
+                    <span class="md-subhead">{{local.propietario}}</span>
+                </md-card-header-text>
+            </md-card-header>
+            <img ng-src="images/card2.png" class="md-card-image" alt="Washed Out">
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline">Categorias</span>
+                </md-card-title-text>
+            </md-card-title>
+            <form name="formcat" ng-submit="form_categoria()">
+                <md-card-content>
+                    <div layout="row">
+                      <md-input-container  class="md-icon-float md-block" flex-gt-sm>
+                        <md-icon class="md-accent">list</md-icon>
+                        <label>Categorías</label>
+                        <md-select ng-model="datacategoria.selectedToppings" multiple required>
+                          <md-optgroup label="Meats">
+                            <md-option ng-value="topping.id" ng-repeat="topping in toppings">{{topping.categoria}}</md-option>
+                          </md-optgroup>
+                        </md-select>
+                        <div ng-messages="formcat.propietario.$error">
+                            <div ng-message="required">Campo Requerido.</div>
+                        </div>
+                      </md-input-container>
+                    </div>
+                    <div layout="row">
+                        <p ng-if="datacategoria.selectedToppings">
+                            {{data.nombre_comercial}}, pertenese a las siguientes categorias {{printSelectedToppings()}}.
+                        </p>
+                    </div>
+                </md-card-content>
+                <md-card-actions layout="row" layout-align="center center end">
+                    <md-button type="submit"  class="md-raised md-primary" ng-disabled="formcat.$invalid">Guardar</md-button>
+                </md-card-actions>
+            </form>
+        </md-card>
+    </div>
+</md-content>
+
+

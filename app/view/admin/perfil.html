@@ -1,195 +1,139 @@
-<style type="text/css">
-    md-input-container:not(.md-input-invalid).md-input-focused .md-input {
-        border-color: red;
-    }
-</style>
-<md-tabs md-dynamic-height md-border-bottom>
-    <md-tab>
-        <md-tab-label>
-            <i class="material-icons">account_circle</i> Perfil Usuario
-        </md-tab-label>
-        <md-tab-body class="md-padding">
-            <md-content layout-gt-sm="row">
-                <div layout-padding flex="40">
-                    <h2 class="md-title">Información General</h2>
-                    <form name="formig" ng-submit="form_info_gen()">
-                        <div layout-gt-sm="row">
-                            <md-input-container class="md-block" flex-gt-sm>
-                                <label>Nombre Comercial</label>
-                                <input required name="nombre_comercial" ng-model="data.nombre_comercial">
-                                <div ng-messages="formig.nombre_comercial.$error">
-                                    <div ng-message="required">Campo Requerido.</div>
-                                </div>
-                            </md-input-container>
-                            <md-input-container class="md-block" flex-gt-sm>
-                                <label>Propietario</label>
-                                <input required name="propietario" ng-model="data.propietario">
-                                <div ng-messages="formig.propietario.$error">
-                                    <div ng-message="required">Campo Requerido.</div>
-                                </div>
-                            </md-input-container>
-                        </div>
-                        <div layout-gt-sm="row">
-                            <md-input-container class="md-block" flex-gt-sm>
-                                <label>Hablanos un poco de tu tienda</label>
-                                <textarea required name="descripcion" ng-model="data.description"></textarea>
-                                <div ng-messages="formig.descripcion.$error" ng-show="formig.descripcion.$dirty">
-                                    <div ng-message="required">Campo Requerido</div>
-                                </div>
-                            </md-input-container>
-                            <md-input-container class="md-block" flex-gt-sm>
-                                <label>Correo Electrónico</label>
-                                <input required type="email" name="correo" ng-model="data.correo" ng-pattern="/^.+@.+\..+$/" />
-                                <div ng-messages="formig.correo.$error" ng-show="formig.correo.$dirty">
-                                    <div ng-message="required">Campo Requerido.</div>
-                                    <div ng-message="pattern">Correo invalido</div>
-                                </div>
-                            </md-input-container>
-                        </div>
-                        <div layout-gt-sm="row">
-                            <md-input-container class="md-block" flex-gt-sm>
-                                <label>Teléfono</label>
-                                <input required name="telefono" ng-pattern="/[0-9]/" ng-model="data.telefono">
-                                <div ng-messages="newreg.telefono.$error" ng-show="newreg.telefono.$dirty">
-                                    <div ng-message="required">Campo Requerido.</div>
-                                    <div ng-message="pattern">Solo números</div>
-                                </div>
-                            </md-input-container>
-                        </div>
-                        <div layout-gt-sm="row">
-                            <md-button type="submit" class="md-raised md-primary" ng-disabled="formig.$invalid">
-                                Actualizar
-                            </md-button>
-                        </div>
-                    </form>
-                </div>
-                <div layout-padding flex="40">
-                    <h2 class="md-title">Localización</h2>
-                    <form name="fl" ng-submit="reglocalizacion()">
-                        <div layout-gt-sm="column">
-                            <div layout-gt-sm="row">
-                                <md-input-container class="md-block">
-                                    <label>Referencia direccion</label>
-                                    <input required name="direccion" ng-model="local.nota">
-                                    <div ng-messages="fl.direccion.$error">
-                                        <div ng-message="required">Campo Requerido.</div>
-                                    </div>
-                                </md-input-container>
-                                <md-input-container class="md-block">
-                                    <label>Numero Local</label>
-                                    <input required type="text" name="nl" ng-model="local.num_local"/>
-                                    <div ng-messages="fl.nl.$error" ng-show="fl.nl.$dirty">
-                                        <div ng-message="required">Campo Requerido.</div>
-                                    </div>
-                                </md-input-container>
-                            </div>
-                            <div layout-gt-sm="row">
-                                <md-input-container class="md-block">
-                                    <label>Calle Principal</label>
-                                    <input required type="text" name="cp" ng-model="local.calle_principal">
-                                    <div ng-messages="fl.cp.$error">
-                                        <div ng-message="required">Campo Requerido.</div>
-                                    </div>
-                                </md-input-container>
-                                <md-input-container class="md-block">
-                                    <label>Calle Secundaria</label>
-                                    <input required type="text" name="cs" ng-model="local.calle_secundaria" />
-                                    <div ng-messages="fl.cs.$error" ng-show="fl.cs.$dirty">
-                                        <div ng-message="required">Campo Requerido.</div>
-                                    </div>
-                                </md-input-container>
-                            </div>
-                            <div layout-gt-sm="row">
-                                <md-input-container class="md-block">
-                                    <label>Geolocalización Mapa</label>
-                                    <input required type="text" name="mapa" disabled ng-model="local.map" />
-                                    <div ng-messages="fl.mapa.$error" ng-show="fl.mapa.$dirty">
-                                        <div ng-message="required">Campo Requerido.</div>
-                                    </div>
-                                </md-input-container>
-                                <div>
-                                    <md-button class="md-raised" ng-click="mapmodal()">
-                                        <md-icon class="material-icons">search</md-icon>
-                                    </md-button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div layout-gt-sm="row">
-                            <md-button type="submit" class="md-raised md-primary" ng-disabled="fl.$invalid">
-                                Actualizar
-                            </md-button>
-                        </div>
-                    </form>
-                </div>
-                <div flex="20">
-                    <h2 class="md-title">Redes Sociales</h2>
-                    <form name="formredes" ng-submit="registroredes()">
-                        <md-input-container class="md-block">
-                            <label>FacebooK</label>
-                            <md-icon md-svg-src="img/icons/facebook.svg"></md-icon>
-                            <input required type="url" name="facebook" ng-model="redes.facebook">
-                            <div ng-messages="formredes.facebook.$error">
+<md-content layout-gt-sm="row">
+    <div flex-xs flex-gt-xs="60" layout="column"> <!-- informacion general -->
+        <md-card>
+            <img ng-src="images/card2.png" class="md-card-image" alt="Washed Out">
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline">Información General</span>
+                </md-card-title-text>
+            </md-card-title>
+            <form name="formig" ng-submit="form_info_gen()">
+                <md-card-content>
+                    <div layout-gt-sm="row">
+                        <md-input-container  class="md-icon-float md-block" flex-gt-sm>
+                            <md-icon class="md-accent">code</md-icon>
+                            <label>Codigo Aso</label>
+                            <input required name="cod_aso" ng-model="data.cod_aso" disabled>
+                            <div ng-messages="formig.cod_aso.$error">
                                 <div ng-message="required">Campo Requerido.</div>
                             </div>
                         </md-input-container>
-                        <md-input-container class="md-block">
-                            <label>Twitter</label>
-                            <md-icon md-svg-src="img/icons/twitter.svg"></md-icon>
-                            <input type="url" name="twitter" ng-model="redes.twitter">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <md-icon class="md-accent">update</md-icon>
+                            <label>Ultima Actualización</label>
+                            <input required name="update_at" ng-model="data.update_at" disabled>
+                            <div ng-messages="formig.update_at.$error">
+                                <div ng-message="required">Campo Requerido.</div>
+                            </div>
                         </md-input-container>
-                        <md-input-container class="md-block">
-                            <label>Instagram</label>
-                            <md-icon md-svg-src="img/icons/ic_card_giftcard_24px.svg"></md-icon>
-                            <input type="url" name="instagram" ng-model="redes.instagram" />
+                    </div>
+                    <div layout-gt-sm="row">
+                        <md-input-container  class="md-icon-float md-block" flex-gt-sm>
+                            <md-icon class="md-accent">business</md-icon>
+                            <label>Nombre Comercial</label>
+                            <input required name="nombre_comercial" ng-model="data.nombre_comercial">
+                            <div ng-messages="formig.nombre_comercial.$error">
+                                <div ng-message="required">Campo Requerido.</div>
+                            </div>
                         </md-input-container>
-                        <div layout-gt-sm="row">
-                            <md-button type="submit" class="md-raised md-primary" ng-disabled="formredes.$invalid">
-                                Actualizar
-                            </md-button>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <md-icon class="md-accent">dns</md-icon>
+                            <label>Propietario</label>
+                            <input required name="propietario" ng-model="data.propietario">
+                            <div ng-messages="formig.propietario.$error">
+                                <div ng-message="required">Campo Requerido.</div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                    <div layout-gt-sm="row">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <md-icon class="md-accent">description</md-icon>
+                            <label>Hablanos un poco de tu tienda</label>
+                            <textarea required name="descripcion" ng-model="data.description"></textarea>
+                            <div ng-messages="formig.descripcion.$error" ng-show="formig.descripcion.$dirty">
+                                <div ng-message="required">Campo Requerido</div>
+                            </div>
+                        </md-input-container>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <md-icon class="md-accent">mail_outline</md-icon>
+                            <label>Correo Electrónico</label>
+                            <input required type="email" name="correo" ng-model="data.correo" ng-pattern="/^.+@.+\..+$/" />
+                            <div ng-messages="formig.correo.$error" ng-show="formig.correo.$dirty">
+                                <div ng-message="required">Campo Requerido.</div>
+                                <div ng-message="pattern">Correo invalido</div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                    <div layout-gt-sm="row">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <md-icon class="md-accent">contact_phone</md-icon>
+                            <label>Teléfono</label>
+                            <input required name="telefono" ng-pattern="/[0-9]/" ng-model="data.telefono">
+                            <div ng-messages="newreg.telefono.$error" ng-show="newreg.telefono.$dirty">
+                                <div ng-message="required">Campo Requerido.</div>
+                                <div ng-message="pattern">Solo números</div>
+                            </div>
+                        </md-input-container>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <md-icon class="md-accent">phone</md-icon>
+                            <label>Teléfono 1</label>
+                            <input required name="telefono1" ng-pattern="/[0-9]/" ng-model="data.telefono1">
+                            <div ng-messages="newreg.telefono1.$error" ng-show="newreg.telefono1.$dirty">
+                                <div ng-message="required">Campo Requerido.</div>
+                                <div ng-message="pattern">Solo números</div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                </md-card-content>
+                <md-card-actions layout="row" layout-align="center center end">
+                    <md-button type="submit"  class="md-raised md-primary" ng-disabled="formig.$invalid">Actualizar</md-button>
+                </md-card-actions>
+            </form>
+        </md-card>
+    </div>
+    <div flex-xs flex-gt-xs="40" layout="column"> <!-- informacion seleccionar categorias pertenecientes -->
+        <md-card>
+            <md-card-header>
+                <md-card-avatar>
+                    <md-icon class="md-accent">business</md-icon>
+                </md-card-avatar>
+                <md-card-header-text>
+                    <span class="md-title">{{local.nombre_comercial}}</span>
+                    <span class="md-subhead">{{local.propietario}}</span>
+                </md-card-header-text>
+            </md-card-header>
+            <img ng-src="images/card2.png" class="md-card-image" alt="Washed Out">
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline">Categorias</span>
+                </md-card-title-text>
+            </md-card-title>
+            <form name="formcat" ng-submit="form_categoria()">
+                <md-card-content>
+                    <div layout="row">
+                      <md-input-container  class="md-icon-float md-block" flex-gt-sm>
+                        <md-icon class="md-accent">list</md-icon>
+                        <label>Categorías</label>
+                        <md-select ng-model="datacategoria.selectedToppings" multiple required>
+                          <md-optgroup label="Meats">
+                            <md-option ng-value="topping.id" ng-repeat="topping in toppings">{{topping.categoria}}</md-option>
+                          </md-optgroup>
+                        </md-select>
+                        <div ng-messages="formcat.propietario.$error">
+                            <div ng-message="required">Campo Requerido.</div>
                         </div>
-                    </form>
-                </div>
-            </md-content>
-
-        </md-tab-body>
-    </md-tab>
-    <!-- <md-tab class="md-accent">
-        <md-tab-label>
-            <i class="material-icons">verified_user</i> Cambiar Password
-        </md-tab-label>
-        <md-tab-body>
-            <div layout-align="center start" layout="row">
-                <form name="forminit" flex="40">
-                    <md-input-container class="md-block">
-                        <label>Password Anterior</label>
-                        <input autocomplete="off" type="text" name="loginusuario" ng-model="loginusuario" required>
-                        <div ng-messages="forminit.loginusuario.$error" ng-show="forminit.loginusuario.$dirty">
-                            <div ng-message="required">Campo Requerido</div>
-                        </div>
-                    </md-input-container>
-
-                    <md-input-container class="md-block">
-                        <label>Nuevo Password</label>
-                        <input autocomplete="off" type="text" name="loginusuario" ng-model="loginusuario" required>
-                        <div ng-messages="forminit.loginusuario.$error" ng-show="forminit.loginusuario.$dirty">
-                            <div ng-message="required">Campo Requerido</div>
-                        </div>
-                    </md-input-container>
-
-                    <md-input-container class="md-block">
-                        <label>Repita Password</label>
-                        <input autocomplete="off" type="text" name="loginpassword" ng-model="loginpassword" required>
-                        <div ng-messages="forminit.loginpassword.$error" ng-show="forminit.loginpassword.$dirty">
-                            <div ng-message="required">Campo Requerido</div>
-                        </div>
-                    </md-input-container>
-                    <md-input-container class="md-block">
-                        <md-button class="md-raised md-primary" ng-click="login()" ng-disabled="forminit.$invalid"> Actualizar
-                        </md-button>
-                    </md-input-container>
-                </form>
-            </div>
-        </md-tab-body>
-    </md-tab> -->
-</md-tabs>
+                      </md-input-container>
+                    </div>
+                    <div layout="row">
+                        <p ng-if="datacategoria.selectedToppings">
+                            {{data.nombre_comercial}}, pertenese a las siguientes categorias {{printSelectedToppings()}}.
+                        </p>
+                    </div>
+                </md-card-content>
+                <md-card-actions layout="row" layout-align="center center end">
+                    <md-button type="submit"  class="md-raised md-primary" ng-disabled="formcat.$invalid">Guardar</md-button>
+                </md-card-actions>
+            </form>
+        </md-card>
+    </div>
+</md-content>

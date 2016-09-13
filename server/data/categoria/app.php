@@ -11,7 +11,7 @@
 	$postdata = file_get_contents("php://input");
 	$request = json_decode($postdata);
 
-	if ($request->save == "new") {
+	if ($request->success == "save") {
 		# code...
 		$data = $request->data;
 
@@ -32,5 +32,24 @@
 		}else{
 			print json_encode(array('result' => 'error', 'proceso' => 'save no disponible'));
 		}
+	}
+	if ($request->success == "get") {
+		# code...
+		$resultado = $class->consulta	("	
+											SELECT *
+											FROM categoria
+											WHERE stado='1'
+										");
+		$acu = array();
+		while($row = $class->fetch_array($resultado)) {
+			$acu[] =	array(
+								'id' => $row['id'],
+								'categoria' => $row['categoria'],
+								'descripcion' => $row['descripcion'],
+								'img' => $row['img'], 
+								'stado' => $row['stado']
+								);
+		}
+		print json_encode($acu);
 	}
 	

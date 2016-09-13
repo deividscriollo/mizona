@@ -5,7 +5,9 @@ $routeSegmentProvider.
 
     when('/Administrador',          's1').
     when('/Administrador/Perfil',          's1.perfil').
-    when('/--',          's1').
+    when('/Administrador/Localizacion',          's1.localizacion').
+    when('/Administrador/Redes-Sociales',          's1.redes').
+    when('/Administrador/Publicaciones',          's1.publicacion').
     when('/Login',    's4').
     when('/Login/Acceso',    's4.acceso').
     when('/Login/Registro',    's4.registro').
@@ -36,26 +38,18 @@ $routeSegmentProvider.
             templateUrl: 'view/admin/perfil.html',
             controller: 'admin-perfil-Ctrl'
         }).
-
-        segment('itemInfo', {
-            templateUrl: 'templates/section1/item.html',
-            // controller: Section1ItemCtrl,
-            dependencies: ['id']}).
-
-        within().
-
-            segment('overview', {
-                default: true,
-                templateUrl: 'templates/section1/item/overview.html'}).
-
-            segment('edit', {
-                 templateUrl: 'templates/section1/item/edit.html'}).
-
-            up().
-
-        segment('prefs', {
-            templateUrl: 'templates/section1/prefs.html'}).
-
+        segment('localizacion', {
+            templateUrl: 'view/admin/localizacion.html',
+            controller: 'localizacion-Ctrl',
+        }).
+        segment('redes', {
+            templateUrl: 'view/admin/redes.html',
+            controller: 'redes-Ctrl',
+        }).
+        segment('publicacion', {
+            templateUrl: 'view/admin/publicacion.html',
+            controller: 'publicacion-Ctrl',
+        }).
         up().
     segment('s4', {
         templateUrl: 'view/login.html',

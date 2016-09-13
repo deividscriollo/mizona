@@ -30,6 +30,9 @@
 										'propietario' => $row['propietario'],
 										'correo' => $row['correo'], 
 										'telefono' => $row['telefono'],
+										'telefono1' => $row['telefono1'],
+										'cod_aso' => $row['cod_aso'],
+										'update_at' => $row['update_at'],
 										'description' => $row['description']
 										)
 							);
@@ -55,6 +58,7 @@
 																			."','".$data->propietario
 																			."','".$data->telefono
 																			."','".$data->cod_aso
+																			."','".'(000)000-000'  // telefono1
 																			."','".''  // estado
 																			."','".$date // fecha creacion
 																			."','".$date // fecha actualizacion
@@ -102,12 +106,15 @@
 	}
 	if ($request->success == "update") {
 		$data = $request->data;
+		$date_update = $class->fecha_hora();
 		$resultado = $class->consulta("	UPDATE EMPRESA 
 										SET 
 											stado = '$data->description',
 											nombre_comercial = '$data->nombre_comercial',
 											propietario = '$data->propietario',
-											telefono = '$data->telefono'
+											telefono = '$data->telefono',
+											telefono1 = '$data->telefono1',
+											update_at = '$date_update'
 										WHERE id='$data->id_empresa'");
 		if ($resultado) {
 			# code...

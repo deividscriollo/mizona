@@ -1,0 +1,94 @@
+<style type="text/css">
+    md-input-container:not(.md-input-invalid).md-input-focused .md-input {
+        border-color: red;
+    }
+</style>
+<md-content layout-gt-sm="row">
+    <div flex-xs flex-gt-xs="60" layout="column"> <!-- informacion general -->
+        <md-card>
+            <img ng-src="images/card2.png" class="md-card-image" alt="Washed Out">
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline">Información Geolocalización</span>
+                </md-card-title-text>
+            </md-card-title>
+            <form name="fl" ng-submit="reglocalizacion()">
+                <md-card-content>
+                    <div layout-gt-sm="row">
+                        <md-input-container  class="md-icon-float md-block" flex-gt-sm>
+                            <label>Referencia direccion</label>
+                            <input required name="direccion" ng-model="data.nota">
+                            <div ng-messages="fl.direccion.$error">
+                                <div ng-message="required">Campo Requerido.</div>
+                            </div>
+                        </md-input-container>
+                        <md-input-container  class="md-icon-float md-block" flex-gt-sm>
+                            <label>Numero Local</label>
+                            <input required type="text" name="nl" ng-model="data.num_local"/>
+                            <div ng-messages="fl.nl.$error" ng-show="fl.nl.$dirty">
+                                <div ng-message="required">Campo Requerido.</div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                    <div layout-gt-sm="row">
+                        <md-input-container  class="md-icon-float md-block" flex-gt-sm>
+                            <label>Calle Principal</label>
+                            <input required type="text" name="cp" ng-model="data.calle_principal">
+                            <div ng-messages="fl.cp.$error">
+                                <div ng-message="required">Campo Requerido.</div>
+                            </div>
+                        </md-input-container>
+                        <md-input-container  class="md-icon-float md-block" flex-gt-sm>
+                            <label>Calle Secundaria</label>
+                            <input required type="text" name="cs" ng-model="data.calle_secundaria" />
+                            <div ng-messages="fl.cs.$error" ng-show="fl.cs.$dirty">
+                                <div ng-message="required">Campo Requerido.</div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                    <div layout-gt-sm="row">
+                        <md-input-container  class="md-icon-float md-block" flex-gt-sm>
+                            <label>Geolocalización Mapa</label>
+                            <input required type="text" name="mapa" disabled ng-model="data.map" />
+                            <div ng-messages="fl.mapa.$error" ng-show="fl.mapa.$dirty">
+                                <div ng-message="required">Campo Requerido.</div>
+                            </div>
+                        </md-input-container>
+                        <div>
+                            <md-button class="md-raised" ng-click="mapmodal()">
+                                <md-icon class="material-icons">search</md-icon>
+                            </md-button>
+                        </div>
+                    </div>
+                </md-card-content>
+                <md-card-actions layout="row" layout-align="center center end">
+                    <md-button type="submit" class="md-raised md-primary" ng-disabled="fl.$invalid">
+                        Actualizar
+                    </md-button>
+                </md-card-actions>
+            </form>
+        </md-card>
+    </div>
+    <div flex-xs flex-gt-xs="40" layout="column"> <!-- informacion general -->
+        <md-card>
+            <md-card-header>
+                <md-card-avatar>
+                    <md-icon class="md-accent">business</md-icon>
+                </md-card-avatar>
+                <md-card-header-text>
+                    <span class="md-title">{{local.nombre_comercial}}</span>
+                    <span class="md-subhead">{{local.propietario}}</span>
+                </md-card-header-text>
+            </md-card-header>
+            <img ng-src="images/card2.png" class="md-card-image" alt="Washed Out">
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline">Información Geolocalización</span>
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-content>
+            </md-card-content>
+        </md-card>
+    </div>
+</md-content>
+    
